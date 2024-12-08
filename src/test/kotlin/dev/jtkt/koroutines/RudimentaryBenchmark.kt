@@ -5,6 +5,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executors
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -29,18 +30,16 @@ class RudimentaryBenchmark {
 
     @Test
     fun `test go with cpu bound task`() {
-        // Use this queue as a way to wait for all the goroutines to complete.
-        val queue = ArrayBlockingQueue<Int>(numberOfTasks)
+        val latch = CountDownLatch(numberOfTasks)
 
         repeat(numberOfTasks) { i ->
             go {
-                val result = fibonacci(i % maxFibonacci)
-                queue.put(result)
+                fibonacci(i % maxFibonacci)
+                latch.countDown()
             }
         }
 
-        while (queue.size != numberOfTasks) {
-        }
+        latch.await()
     }
 
     @Test
