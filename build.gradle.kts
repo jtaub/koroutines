@@ -1,19 +1,24 @@
 plugins {
     id("java")
+    kotlin("jvm")
 }
 
 group = "dev.jtkt"
-version = "1.0-SNAPSHOT"
+version = "0.0.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test-junit5"))
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(21)
 }
