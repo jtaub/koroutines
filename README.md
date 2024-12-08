@@ -108,6 +108,16 @@ That's it.
 - Structured concurrency.
 - Kotlin multiplatform support.
 
+### What about Go's Channels?
+
+Use one of the `BlockingQueue` implementations in the Java standard library.
+
+### How is the performance?
+
+You would expect performance to be roughly the same as Kotlin's coroutines with a virtual thread dispatcher.
+My [extremely rudimentary benchmark](src/test/kotlin/dev/jtkt/koroutines/RudimentaryBenchmark.kt) shows this is the
+case, at least for a CPU-bound task.
+
 ## Disclaimer
 
 This project is not in any way affiliated with the official Go or kotlinx-coroutines projects.
