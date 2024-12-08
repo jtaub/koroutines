@@ -1,7 +1,7 @@
 package dev.jtkt.koroutines
 
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
+import kotlin.test.assertTrue
 import java.util.concurrent.atomic.AtomicBoolean
 
 class KoroutinesKtTest {

@@ -1,6 +1,9 @@
+@file:Suppress("OPT_IN_USAGE")
+
 plugins {
     id("java")
-    kotlin("jvm")
+    kotlin("jvm") version "2.1.0"
+    kotlin("plugin.power-assert") version "2.1.0"
 }
 
 group = "dev.jtkt"
@@ -13,6 +16,14 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit5"))
+}
+
+java.sourceSets["test"].java {
+    srcDir("src/main/kotlin")
+}
+
+powerAssert {
+    functions = listOf("kotlin.assert", "kotlin.test.assertEquals", "kotlin.test.assertTrue")
 }
 
 tasks.test {
