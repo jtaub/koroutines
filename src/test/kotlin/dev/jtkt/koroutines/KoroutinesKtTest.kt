@@ -24,5 +24,4 @@ class KoroutinesKtTest {
     @Test
     fun testGo() {
     }
-
 }
