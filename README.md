@@ -83,6 +83,7 @@ to use the
 default [virtual thread per task executor](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Executors.html#newVirtualThreadPerTaskExecutor()).
 
 For example, maybe you want to run tasks one at a time in a predictable order:
+
 ```kotlin
 val taskQueue = Executors.newSingleThreadExecutor()
 
@@ -98,13 +99,19 @@ Every lambda function is immediately invoked on a
 
 That's it.
 
+Unlike a real goroutine, the `go` from this library will return a `java.util.concurrent.Future`.
+This provides basic features like cancellation, and makes it easier to integrate with any existing code you may have
+built around futures.
+
 ### Goals
+
 - Simplicity!
 - Ease of use.
 - Java support.
 - Kotlin support on JVM and Android.
 
 ### Non-goals
+
 - Structured concurrency.
 - Kotlin multiplatform support.
 
