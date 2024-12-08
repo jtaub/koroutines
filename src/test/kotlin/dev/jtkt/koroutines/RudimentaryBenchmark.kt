@@ -20,10 +20,10 @@ class RudimentaryBenchmark {
 
     @BeforeTest
     fun warmup() = repeat(10) {
-        go { fibonacci(20) }
+        go { fibonacci(10) }
 
         runBlocking {
-            launch { fibonacci(20) }
+            launch { fibonacci(10) }
         }
     }
 
