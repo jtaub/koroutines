@@ -82,7 +82,7 @@ The most advanced thing you can do with this library is provide a custom `Execut
 to use the
 default [virtual thread per task executor](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Executors.html#newVirtualThreadPerTaskExecutor()).
 
-For example, amybe you want to run tasks one at a time in a predictable order:
+For example, maybe you want to run tasks one at a time in a predictable order:
 ```kotlin
 val taskQueue = Executors.newSingleThreadExecutor()
 
@@ -98,12 +98,13 @@ Every lambda function is immediately invoked on a
 
 That's it.
 
-## Goals
+### Goals
+- Simplicity!
 - Ease of use.
 - Java support.
 - Kotlin support on JVM and Android.
 
-## Non-goals
+### Non-goals
 - Structured concurrency.
 - Kotlin multiplatform support.
 
