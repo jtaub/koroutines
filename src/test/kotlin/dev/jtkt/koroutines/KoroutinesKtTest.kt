@@ -1,44 +1,34 @@
 package dev.jtkt.koroutines
 
 import java.util.concurrent.Executors
-import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class KoroutinesKtTest {
 
     @Test
     fun go() {
-        // Given a mutable variable,
-        val bool = AtomicBoolean(false)
+        // Given go goroutine which returns hello world,
+        val future = go { "hello world!" }
 
-        // When I create a goroutine to modify it,
-        go {
-            bool.set(true)
-        }
+        // When I join the future
+        val actual = future.get()
 
-        // Then it should have been executed almost immediately.
-        Thread.sleep(1)
-        assertTrue(bool.get())
+        // Then I should get the expected result
+        assertEquals("hello world!", actual)
     }
 
     @Test
     fun `should return results in expected order with single thread executor`() {
-        // Given
-        val results = mutableListOf<Int>()
+        // Given a single threaded executor,
         val executor = Executors.newSingleThreadExecutor()
 
-        // When
-        for (i in 0 until 10) {
-            go(executor) {
-                results += i
-            }
-        }
-        Thread.sleep(5)
+        // When I launch 100 tasks,
+        val futures = (0 until 100).map { i -> go(executor) { i } }
+        val actual = futures.map { it.get() }
 
-        // Then
-        val expected = (0 until 10).toList()
-        assertEquals(expected, results)
+        // Then I should get the results in the expected order.
+        val expected = (0 until 100).toList()
+        assertEquals(expected, actual)
     }
 }
