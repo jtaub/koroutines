@@ -44,8 +44,8 @@ fun main() {
 direct : 0
 direct : 1
 direct : 2
-going
 koroutine : 0
+going
 koroutine : 1
 koroutine : 2
 done
@@ -99,7 +99,7 @@ Every lambda function is immediately invoked on a
 
 That's it.
 
-Unlike a real goroutine, the `go` from this library will return a `java.util.concurrent.Future`.
+Unlike a real goroutine, the `go` from this library will return a `java.util.concurrent.CompletableFuture`.
 This provides basic features like cancellation, and makes it easier to integrate with any existing code you may have
 built around futures.
 
