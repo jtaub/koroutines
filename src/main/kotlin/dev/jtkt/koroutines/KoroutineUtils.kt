@@ -14,8 +14,8 @@ import java.util.concurrent.Future
 fun <T, R> Iterable<T>.mapAsync(transform: (T) -> R) = map { go { transform(it) } }.joinAll()
 
 /**
- * Waits for all the [Future] instances in the iterable to complete and collects their results in a
- * list.
+ * Waits for all the [Future] instances in the collection to complete and collects their results in
+ * a list.
  *
  * @param T the type of result the futures resolve to.
  * @return a list containing the resolved values of all futures.
