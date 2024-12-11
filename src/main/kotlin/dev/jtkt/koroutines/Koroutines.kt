@@ -1,7 +1,7 @@
 package dev.jtkt.koroutines
 
 import java.util.concurrent.CompletableFuture
-import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import java.util.function.Supplier
 
@@ -11,7 +11,7 @@ private val defaultExecutor = Executors.newVirtualThreadPerTaskExecutor()
 fun <V> go(task: Supplier<V>) = go(defaultExecutor, task)
 
 /** Executes the [task] on the given [executor]. */
-fun <V> go(executor: ExecutorService, task: Supplier<V>): CompletableFuture<V> =
+fun <V> go(executor: Executor, task: Supplier<V>): CompletableFuture<V> =
     CompletableFuture.supplyAsync(task, executor)
 
 /**
