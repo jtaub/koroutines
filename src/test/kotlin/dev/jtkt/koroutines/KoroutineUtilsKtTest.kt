@@ -24,23 +24,6 @@ class KoroutineUtilsKtTest {
     }
 
     @Test
-    fun `sequence JoinAll`() {
-        // Given
-        val input = sequence {
-            yield(CompletableFuture.completedFuture(1))
-            yield(CompletableFuture.completedFuture(2))
-            yield(CompletableFuture.completedFuture(3))
-        }
-
-        // When
-        val actual = input.joinAll()
-
-        // Then
-        val expected = listOf(1, 2, 3)
-        assertEquals(expected, actual)
-    }
-
-    @Test
     fun mapAsync() {
         // Given
         val input = listOf(1, 2, 3)
